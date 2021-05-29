@@ -2,6 +2,11 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://asheetbhaskar.net/</loc></url><url>
-            <loc>http://asheetbhaskar.net/categories/</loc></url><url>
-            <loc>http://asheetbhaskar.net/tags/</loc></url></urlset>
+            <loc>http://asheetbhaskar.net/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
+            <loc>http://asheetbhaskar.net/categories/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
+            <loc>http://asheetbhaskar.net/tags/context/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
+            <loc>http://asheetbhaskar.net/posts/context-about-context-package-in-golang/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
+            <loc>http://asheetbhaskar.net/tags/golang/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
+            <loc>http://asheetbhaskar.net/categories/golang/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
+            <loc>http://asheetbhaskar.net/posts/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
+            <loc>http://asheetbhaskar.net/tags/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url></urlset>

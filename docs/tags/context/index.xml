@@ -1,11 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Asheet Bhaskar</title>
-        <link>http://asheetbhaskar.net/</link>
-        <description>Asheet Bhaskar</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 29 May 2021 09:37:32 &#43;0530</lastBuildDate>
-            <atom:link href="http://asheetbhaskar.net/index.xml" rel="self" type="application/rss+xml" />
-        <item>
+        <title>context - Tag - Asheet Bhaskar</title>
+        <link>http://asheetbhaskar.net/tags/context/</link>
+        <description>context - Tag - Asheet Bhaskar</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 29 May 2021 09:37:32 &#43;0530</lastBuildDate><atom:link href="http://asheetbhaskar.net/tags/context/" rel="self" type="application/rss+xml" /><item>
     <title>Context About Context Package in Golang</title>
     <link>http://asheetbhaskar.net/posts/context-about-context-package-in-golang/</link>
     <pubDate>Sat, 29 May 2021 09:37:32 &#43;0530</pubDate>

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Context About Context Package in Golang | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="Context About Context Package in Golang"/>
+<meta name="twitter:description" content=""/><meta name="Description" content=""><meta property="og:title" content="Context About Context Package in Golang" />
+<meta property="og:description" content="This post is about the context package of golang and how to get started with it. We&rsquo;ll also disucss the various use cases of it. After reading this blog user should have comprehensive understanding of context package of golang." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://asheetbhaskar.net/posts/context-about-context-package-in-golang/" /><meta property="og:image" content="http://asheetbhaskar.net/images/avtar.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-29T09:37:32&#43;05:30" />
+<meta property="article:modified_time" content="2021-05-29T09:37:32&#43;05:30" />
+
+<meta name="application-name" content="Asheet Bhaskar">
+<meta name="apple-mobile-web-app-title" content="Asheet Bhaskar"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://asheetbhaskar.net/posts/context-about-context-package-in-golang/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Context About Context Package in Golang",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/asheetbhaskar.net\/posts\/context-about-context-package-in-golang\/"
+        },"genre": "posts","keywords": "golang, context","wordCount":  1869 ,
+        "url": "http:\/\/asheetbhaskar.net\/posts\/context-about-context-package-in-golang\/","datePublished": "2021-05-29T09:37:32+05:30","dateModified": "2021-05-29T09:37:32+05:30","description": ""
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "http:\/\/asheetbhaskar.net\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "golang",
+            "item": "http://asheetbhaskar.net/categories/golang/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Context About Context Package in Golang"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Asheet Bhaskar" class="header-logo logo-svg">Asheet Bhaskar</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Asheet Bhaskar" class="header-logo">Asheet Bhaskar</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div></header><main class="main">
+<div class="container content-article  theme-full"><div class="toc" id="toc-auto">
+            <div class="toc-title">Contents</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="featured-image" style="background-image: url('/images/golang-context.png');"><div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">Home </a></li><li><a href="/categories/golang/">golang </a></li><li>Context About Context Package in Golang</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">Context About Context Package in Golang</h1><div class="post-meta summary-post-meta"><span class="post-category meta-item">
+                                <a href="/categories/golang/"><span class="svg-icon icon-folder"></span>golang</a>
+                            </span><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-05-29">2021-05-29</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>1869 words
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>9 minutes
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </div></header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>Contents</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#pre-requisites">Pre-requisites</a></li>
+        <li><a href="#why-should-we-use-contexthttpsgolangorgpkgcontext">Why should we use <a href="https://golang.org/pkg/context/">context</a></a></li>
+        <li><a href="#using-context--examples">Using context | Examples</a></li>
+        <li><a href="#things-to-keep-in-mind-while-using-the-context">Things to keep in mind while using the context</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                    </div><p>This post is about the context package of golang and how to get started with it. We&rsquo;ll also disucss the various use cases of it. After reading this blog user should have comprehensive understanding of context package of golang.</p>
+<h3 id="pre-requisites" class="headerLink"><a href="#pre-requisites" class="header-mark"></a>Pre-requisites</h3><ul>
+<li><strong>goroutines</strong>: goroutines are the light weight threads which can be used to execute functions concurrently with other functions. You can read more about goroutines at <a href="https://tour.golang.org/concurrency/1" target="_blank" rel="noopener noreffer">link</a></li>
+<li><strong>channels</strong>: channels can be thought of as a pipe that connect multiple concurrent goroutines. Read more about channels at <a href="https://tour.golang.org/concurrency/2" target="_blank" rel="noopener noreffer">link</a></li>
+<li><strong>defer</strong>: A defer statement postpones the execution of a function until the surrounding function returns. Read more at <a href="https://tour.golang.org/flowcontrol/12" target="_blank" rel="noopener noreffer">link</a></li>
+</ul>
+Why should we use <h3 id="why-should-we-use-contexthttpsgolangorgpkgcontext" class="headerLink"><a href="#why-should-we-use-contexthttpsgolangorgpkgcontext" class="header-mark"></a><a href="https://golang.org/pkg/context/" target="_blank" rel="noopener noreffer">context</a></h3><p>Let&rsquo;s take the example of following timeline for any action.</p>
+<ul>
+<li>action starts at time instant t0.</li>
+<li>action completes at time instant t5.</li>
+<li>this action initiates three different goroutines namely, goroutine 1, goroutine 2 and goroutine 3 etc.</li>
+<li>goroutine 1 starts and completes at t1 and completes at t'1.</li>
+<li>goroutine 2 starts and completes at t2 and completes at t'2.</li>
+<li>goroutine 3 starts and completes at t3 and completes at t'3.</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="/images/golang-context.png"
+         alt="Context-golang"
+         title="golang-context.png"
+    /></p>
+<p>Golang enables us to initiate goroutines to perform different parts of an action concurrently. If due to some unavoidable reason if above action has to be terminated at time instant t4, It&rsquo;s importnat to terminate goroutines 2 and 3 as well in order to avoid the sideeffects that&rsquo;ll be caused by goroutines 2 and 3. <em>Context</em> provides the ability to time-out and terminate goroutines to handle such cases.</p>
+<h3 id="using-context--examples" class="headerLink"><a href="#using-context--examples" class="header-mark"></a>Using context | Examples</h3>Example 1:  <h4 id="example-1--runhttpsplaygolangorgpotzhjznvgzn" class="headerLink"><a href="#example-1--runhttpsplaygolangorgpotzhjznvgzn" class="header-mark"></a><a href="https://play.golang.org/p/oTZHJZNVgzn" target="_blank" rel="noopener noreffer">run</a></h4><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;context canceled for op-1&#34;</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationOne: %d\n&#34;</span>, <span style="color:#a6e22e">n</span>)
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">500</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithCancel</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span>)
+  }
+
+</code></pre></div><h5 id="observation" class="headerLink"><a href="#observation" class="header-mark"></a>Observation</h5><ul>
+<li>function <code>operationOne</code> is not being called in a separate goroutine, it&rsquo;s blocking call and main funtion won&rsquo;t exits util operationOne returns.</li>
+<li>function <code>operationOne</code> is being passed context as argument.</li>
+<li>context is not being cancelled or being mark as Done.</li>
+<li>operationOne will never return as context is not being cancelled at all.</li>
+</ul>
+Example 2: <h4 id="example-2-runhttpsplaygolangorgpxniqxgrne6t" class="headerLink"><a href="#example-2-runhttpsplaygolangorgpxniqxgrne6t" class="header-mark"></a><a href="https://play.golang.org/p/XNIQxgrNe6T" target="_blank" rel="noopener noreffer">run</a></h4><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;context canceled for op-1&#34;</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationOne: %d\n&#34;</span>, <span style="color:#a6e22e">n</span>)
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">500</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithCancel</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span>)
+    <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+  }
+
+</code></pre></div><h5 id="observation-1" class="headerLink"><a href="#observation-1" class="header-mark"></a>Observation</h5><ul>
+<li>function <code>operationOne</code> is  being called in a separate goroutine.</li>
+<li>function <code>operationOne</code> is being passed context as argument.</li>
+<li>main function will return after 5 seconds from the start of execution.</li>
+<li>context will cancelled at return of main function.</li>
+</ul>
+Example 3: <h4 id="example-3-runhttpsplaygolangorgprhnseo9uvgq" class="headerLink"><a href="#example-3-runhttpsplaygolangorgprhnseo9uvgq" class="header-mark"></a><a href="https://play.golang.org/p/rHnsEO9UvGQ" target="_blank" rel="noopener noreffer">run</a></h4><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;context canceled for op-1&#34;</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationOne: %d\n&#34;</span>, <span style="color:#a6e22e">n</span>)
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">500</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationTwo</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;context canceled for op-2&#34;</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationTwo: %d\n&#34;</span>, <span style="color:#a6e22e">n</span>)
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">250</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithCancel</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">d</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">5000</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithDeadline</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">d</span>)
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span>)
+
+    <span style="color:#a6e22e">d</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">10000</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithDeadline</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">d</span>)
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationTwo</span>(<span style="color:#a6e22e">ctx</span>)
+
+    <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">20</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+  }
+
+</code></pre></div><h5 id="observation-2" class="headerLink"><a href="#observation-2" class="header-mark"></a>Observation</h5><ul>
+<li>function <em>operationOne</em> and <code>operationTwo</code> are  being called in a separate goroutines.</li>
+<li>drived context with differenty deadlines are being passed to <em>operationOne</em> and <code>operationTwo</code> functions.</li>
+<li>main function will return after 20 seconds from the start of execution.</li>
+<li>function <code>operationOne</code> will return after 5 seconds as deadline of context passed to it will be reached.</li>
+<li>function <code>operationTwo</code> will return after 10 seconds as deadline of context passed to it will be reached.</li>
+<li>main function will return only after 20 seconds even though <em>operationOne</em> and <code>operationTwo</code> will be completed in first 10 seconds.</li>
+</ul>
+Example 4: <h4 id="example-4-runhttpsplaygolangorgpjv30esabmo6" class="headerLink"><a href="#example-4-runhttpsplaygolangorgpjv30esabmo6" class="header-mark"></a><a href="https://play.golang.org/p/jV30esabmo6" target="_blank" rel="noopener noreffer">run</a></h4><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;context canceled for op-1&#34;</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationOne: %d\n&#34;</span>, <span style="color:#a6e22e">n</span>)
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">500</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationTwo</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;context canceled for op-2&#34;</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationTwo: %d\n&#34;</span>, <span style="color:#a6e22e">n</span>)
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">250</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithCancel</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">d</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">5000</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">_</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithDeadline</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">d</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span>)
+
+    <span style="color:#a6e22e">d</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">10000</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">_</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithDeadline</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">d</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationTwo</span>(<span style="color:#a6e22e">ctx</span>)
+
+    <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+  }
+
+</code></pre></div><h5 id="observation-3" class="headerLink"><a href="#observation-3" class="header-mark"></a>Observation</h5><ul>
+<li>function <em>operationOne</em> and <code>operationTwo</code> are  being called in a separate goroutines.</li>
+<li>drived context with differenty deadlines are being passed to <em>operationOne</em> and <code>operationTwo</code> functions.</li>
+<li>function <code>operationOne</code> will return after 5 seconds as deadline of context passed to it will be reached.</li>
+<li>function <code>operationTwo</code> will return after 10 seconds as deadline of context passed to it will be reached.</li>
+<li>main function will return after first 3 seconds.</li>
+</ul>
+<h5 id="what-will-happen-to-other-two-goroutines" class="headerLink"><a href="#what-will-happen-to-other-two-goroutines" class="header-mark"></a>what will happen to other two goroutines?</h5><ul>
+<li>This is a case of context leak. even after return of main function other two drived contexts passed to operationOne* and <code>operationTwo</code> will not be discarded. To avoid context leak it&rsquo;s a good practice to use <code>defer cancel()</code> even for drived contexts</li>
+</ul>
+Example 5: <h4 id="example-5-runhttpsplaygolangorgpd6ctlqiukyk" class="headerLink"><a href="#example-5-runhttpsplaygolangorgpd6ctlqiukyk" class="header-mark"></a><a href="https://play.golang.org/p/d6ctLQiukYk" target="_blank" rel="noopener noreffer">run</a></h4><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Key</span> <span style="color:#66d9ef">string</span>
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;context canceled for %s\n&#34;</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationOne: %d : opeartion_id = %s\n&#34;</span>, <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">500</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationTwo</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;context canceled for %s\n&#34;</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationTwo: %d : opeartion_id = %s\n&#34;</span>, <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">250</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithCancel</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">d</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">5000</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithDeadline</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">d</span>)
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">ctx</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithValue</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>), <span style="color:#e6db74">&#34;ONE&#34;</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span>)
+
+    <span style="color:#a6e22e">d</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">10000</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithDeadline</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">d</span>)
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">ctx</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithValue</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>), <span style="color:#e6db74">&#34;TWO&#34;</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationTwo</span>(<span style="color:#a6e22e">ctx</span>)
+
+    <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">20</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+  }
+
+</code></pre></div><h5 id="observation-4" class="headerLink"><a href="#observation-4" class="header-mark"></a>Observation</h5><ul>
+<li>function <em>operationOne</em> and <code>operationTwo</code> are  being called in a separate goroutines.</li>
+<li>drived context with differenty deadlines are being passed to <em>operationOne</em> and <code>operationTwo</code> functions.</li>
+<li>a variable <code>op_id</code> and it&rsquo;s value is also being passed with drived context in both the cases.</li>
+<li>main function will return after 20 seconds from the start of execution.</li>
+<li>function <code>operationOne</code> will return after 5 seconds as deadline of context passed to it will be reached.</li>
+<li>function <code>operationTwo</code> will return after 10 seconds as deadline of context passed to it will be reached.</li>
+<li>main function will return only after 20 seconds even though <em>operationOne</em> and <code>operationTwo</code> will be completed in first 10 seconds.</li>
+</ul>
+Example 6: <h4 id="example-6-runhttpsplaygolangorgp47a0qvaflzm" class="headerLink"><a href="#example-6-runhttpsplaygolangorgp47a0qvaflzm" class="header-mark"></a><a href="https://play.golang.org/p/47a0qVAflzm" target="_blank" rel="noopener noreffer">run</a></h4><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Key</span> <span style="color:#66d9ef">string</span>
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationOneChild</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;context canceled for %s\n&#34;</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Child of operation one&#34;</span>)
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+      }
+    }
+
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#75715e">// go operationOneChild(context.WithValue(ctx, Key(&#34;op_id&#34;), &#34;CHILD OF ONE&#34;))
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationOneChild</span>(<span style="color:#66d9ef">nil</span>)
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;context canceled for %s\n&#34;</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationOne: %d : opeartion_id = %s\n&#34;</span>, <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">500</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationTwo</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;context canceled for %s\n&#34;</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationTwo: %d : opeartion_id = %s\n&#34;</span>, <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">250</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithCancel</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">d</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">5000</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithDeadline</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">d</span>)
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">ctx</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithValue</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>), <span style="color:#e6db74">&#34;ONE&#34;</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span>)
+
+    <span style="color:#a6e22e">d</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">10000</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithDeadline</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">d</span>)
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">ctx</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithValue</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>), <span style="color:#e6db74">&#34;TWO&#34;</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationTwo</span>(<span style="color:#a6e22e">ctx</span>)
+
+    <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">20</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+  }
+
+</code></pre></div><h5 id="observation-5" class="headerLink"><a href="#observation-5" class="header-mark"></a>Observation</h5><ul>
+<li>function <em>operationOne</em> and <code>operationTwo</code> are  being called in a separate goroutines.</li>
+<li>drived context with differenty deadlines are being passed to <em>operationOne</em> and <code>operationTwo</code> functions.</li>
+<li>function <code>operationOne</code> will return after 5 seconds as deadline of context passed to it will be reached.</li>
+<li>function <code>operationTwo</code> will return after 10 seconds as deadline of context passed to it will be reached.</li>
+<li>main function will return only after 20 seconds even though <em>operationOne</em> and <code>operationTwo</code> will be completed in first 10 seconds.</li>
+<li>nil drived context is being passed to function <code>operationOneChild</code> which will panic with following result.</li>
+</ul>
+<pre><code>
+  panic: runtime error: invalid memory address or nil pointer dereference
+  [signal SIGSEGV: segmentation violation code=0xffffffff addr=0x0 pc=0xf3966]
+
+  goroutine 9 [running]:
+  main.operationOneChild(0x0, 0x0)
+    /tmp/sandbox968352470/prog.go:14 +0xa6
+  created by main.operationOne
+    /tmp/sandbox968352470/prog.go:28 +0x40
+
+</code></pre>Example 7: <h4 id="example-7-runhttpsplaygolangorgpgswbnldl7bm" class="headerLink"><a href="#example-7-runhttpsplaygolangorgpgswbnldl7bm" class="header-mark"></a><a href="https://play.golang.org/p/gsWBnLDl7Bm" target="_blank" rel="noopener noreffer">run</a></h4><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Key</span> <span style="color:#66d9ef">string</span>
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationOneChild</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;context canceled for %s\n&#34;</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Child of operation one&#34;</span>)
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+      }
+    }
+
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationOneChild</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithValue</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>), <span style="color:#e6db74">&#34;CHILD OF ONE&#34;</span>))
+    <span style="color:#75715e">// go operationOneChild(nil)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;context canceled for %s\n&#34;</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationOne: %d : opeartion_id = %s\n&#34;</span>, <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">500</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">operationTwo</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+    <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">for</span> {
+      <span style="color:#66d9ef">select</span> {
+      <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;context canceled for %s\n&#34;</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// returning not to leak the goroutine
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">default</span>:
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;OperationTwo: %d : opeartion_id = %s\n&#34;</span>, <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>)))
+        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">250</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+        <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span>
+      }
+    }
+  }
+
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithCancel</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">d</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">5000</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithDeadline</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">d</span>)
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">ctx</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithValue</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>), <span style="color:#e6db74">&#34;ONE&#34;</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationOne</span>(<span style="color:#a6e22e">ctx</span>)
+
+    <span style="color:#a6e22e">d</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">10000</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithDeadline</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">d</span>)
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+    <span style="color:#a6e22e">ctx</span> = <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithValue</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">Key</span>(<span style="color:#e6db74">&#34;op_id&#34;</span>), <span style="color:#e6db74">&#34;TWO&#34;</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">operationTwo</span>(<span style="color:#a6e22e">ctx</span>)
+
+    <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">20</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+  }
+
+</code></pre></div><h5 id="observation-6" class="headerLink"><a href="#observation-6" class="header-mark"></a>Observation</h5><ul>
+<li>function <em>operationOne</em> and <code>operationTwo</code> are  being called in a separate goroutines.</li>
+<li>drived context with differenty deadlines are being passed to <em>operationOne</em> and <code>operationTwo</code> functions.</li>
+<li>function <code>operationOne</code> will return after 5 seconds as deadline of context passed to it will be reached.</li>
+<li>function <code>operationTwo</code> will return after 10 seconds as deadline of context passed to it will be reached.</li>
+<li>main function will return only after 20 seconds even though <em>operationOne</em> and <code>operationTwo</code> will be completed in first 10 seconds.</li>
+<li>context which is being passed to <code>operationOneChild</code> is non nil, non drived context. This child go routine will also be terminated on cancellation of parent context.</li>
+</ul>
+<h3 id="things-to-keep-in-mind-while-using-the-context" class="headerLink"><a href="#things-to-keep-in-mind-while-using-the-context" class="header-mark"></a>Things to keep in mind while using the context</h3><ul>
+<li>Incoming requests to a server should create a Context.</li>
+<li>Outgoing calls to servers should accept a Context.</li>
+<li>The chain of function calls between them must propagate the Context.</li>
+<li>Replace the current Context with the derived Context.</li>
+<li>Do not store Contexts inside a struct type; instead, pass a Context explicitly to each function that needs it.</li>
+<li>Do not pass a nil Context, even if a function permits it. Pass context.TODO if you are unsure about which Context to use.</li>
+<li>The same Context may be passed to functions running in different goroutines; Contexts are safe for simultaneous use by multiple goroutines.</li>
+</ul>
+<p>You can use use run link for each example to run these in golang playground. After reading this blog user should have comprehensive understanding of context package of golang.
+If you have any suggestions about plugins to use, please let me know in comments.</p>
+</div><footer>
+                        <div class="post">
+
+
+<div class="post-share"></div>
+
+
+
+
+
+
+<div class="post-tags"><a href="/tags/golang/" class="tag">golang</a><a href="/tags/context/" class="tag">context</a></div></div>
+                </footer></div>
+
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    </div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.83.1">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=http://asheetbhaskar.net/&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2021</span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10}};</script><script src="/js/theme.min.js"></script></body>
+</html>

@@ -4,6 +4,7 @@ defaultContentLanguage = "en"
 # language code
 languageCode = "en"
 title = "Asheet Bhaskar"
+publishDir= "docs"
 
 # Change the default theme to be use when building the site with Hugo
 theme = "uBlogger"
