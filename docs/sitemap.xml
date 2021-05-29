@@ -1,12 +1,29 @@
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    ><url>
-            <loc>http://asheetbhaskar.net/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
-            <loc>http://asheetbhaskar.net/categories/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
-            <loc>http://asheetbhaskar.net/tags/context/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
-            <loc>http://asheetbhaskar.net/posts/context-about-context-package-in-golang/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
-            <loc>http://asheetbhaskar.net/tags/golang/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
-            <loc>http://asheetbhaskar.net/categories/golang/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
-            <loc>http://asheetbhaskar.net/posts/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url><url>
-            <loc>http://asheetbhaskar.net/tags/</loc><lastmod>2021-05-29T09:37:32&#43;05:30</lastmod></url></urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://asheetbhaskar.net/</loc>
+    <lastmod>2021-05-29T09:37:32+05:30</lastmod>
+  </url><url>
+    <loc>http://asheetbhaskar.net/categories/</loc>
+    <lastmod>2021-05-29T09:37:32+05:30</lastmod>
+  </url><url>
+    <loc>http://asheetbhaskar.net/tags/context/</loc>
+    <lastmod>2021-05-29T09:37:32+05:30</lastmod>
+  </url><url>
+    <loc>http://asheetbhaskar.net/posts/context-about-context-package-in-golang/</loc>
+    <lastmod>2021-05-29T09:37:32+05:30</lastmod>
+  </url><url>
+    <loc>http://asheetbhaskar.net/tags/golang/</loc>
+    <lastmod>2021-05-29T09:37:32+05:30</lastmod>
+  </url><url>
+    <loc>http://asheetbhaskar.net/categories/golang/</loc>
+    <lastmod>2021-05-29T09:37:32+05:30</lastmod>
+  </url><url>
+    <loc>http://asheetbhaskar.net/posts/</loc>
+    <lastmod>2021-05-29T09:37:32+05:30</lastmod>
+  </url><url>
+    <loc>http://asheetbhaskar.net/tags/</loc>
+    <lastmod>2021-05-29T09:37:32+05:30</lastmod>
+  </url>
+</urlset>

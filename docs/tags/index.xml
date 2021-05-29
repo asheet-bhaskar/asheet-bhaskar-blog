@@ -1,21 +1,33 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Tags - Tag - Asheet Bhaskar</title>
-        <link>http://asheetbhaskar.net/tags/</link>
-        <description>Tags - Tag - Asheet Bhaskar</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 29 May 2021 09:37:32 &#43;0530</lastBuildDate><atom:link href="http://asheetbhaskar.net/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>context</title>
-    <link>http://asheetbhaskar.net/tags/context/</link>
-    <pubDate>Sat, 29 May 2021 09:37:32 &#43;0530</pubDate>
-    <author>Author</author>
-    <guid>http://asheetbhaskar.net/tags/context/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>golang</title>
-    <link>http://asheetbhaskar.net/tags/golang/</link>
-    <pubDate>Sat, 29 May 2021 09:37:32 &#43;0530</pubDate>
-    <author>Author</author>
-    <guid>http://asheetbhaskar.net/tags/golang/</guid>
-    <description><![CDATA[]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Asheet Bhaskar</title>
+    <link>http://asheetbhaskar.net/tags/</link>
+    <description>Recent content in Tags on Asheet Bhaskar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 29 May 2021 09:37:32 +0530</lastBuildDate><atom:link href="http://asheetbhaskar.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>context</title>
+      <link>http://asheetbhaskar.net/tags/context/</link>
+      <pubDate>Sat, 29 May 2021 09:37:32 +0530</pubDate>
+      
+      <guid>http://asheetbhaskar.net/tags/context/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>http://asheetbhaskar.net/tags/golang/</link>
+      <pubDate>Sat, 29 May 2021 09:37:32 +0530</pubDate>
+      
+      <guid>http://asheetbhaskar.net/tags/golang/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+  </channel>
 </rss>

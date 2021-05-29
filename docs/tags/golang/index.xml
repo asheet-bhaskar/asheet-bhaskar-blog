@@ -1,16 +1,22 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>golang - Tag - Asheet Bhaskar</title>
-        <link>http://asheetbhaskar.net/tags/golang/</link>
-        <description>golang - Tag - Asheet Bhaskar</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 29 May 2021 09:37:32 &#43;0530</lastBuildDate><atom:link href="http://asheetbhaskar.net/tags/golang/" rel="self" type="application/rss+xml" /><item>
-    <title>Context About Context Package in Golang</title>
-    <link>http://asheetbhaskar.net/posts/context-about-context-package-in-golang/</link>
-    <pubDate>Sat, 29 May 2021 09:37:32 &#43;0530</pubDate>
-    <author>Author</author>
-    <guid>http://asheetbhaskar.net/posts/context-about-context-package-in-golang/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/images/golang-context.png" referrerpolicy="no-referrer">
-            </div>This post is about the context package of golang and how to get started with it. We&rsquo;ll also disucss the various use cases of it. After reading this blog user should have comprehensive understanding of context package of golang.]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on Asheet Bhaskar</title>
+    <link>http://asheetbhaskar.net/tags/golang/</link>
+    <description>Recent content in golang on Asheet Bhaskar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 29 May 2021 09:37:32 +0530</lastBuildDate><atom:link href="http://asheetbhaskar.net/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Context About Context Package in Golang</title>
+      <link>http://asheetbhaskar.net/posts/context-about-context-package-in-golang/</link>
+      <pubDate>Sat, 29 May 2021 09:37:32 +0530</pubDate>
+      
+      <guid>http://asheetbhaskar.net/posts/context-about-context-package-in-golang/</guid>
+      
+        <description>This post is about the context package of golang and how to get started with it. We&amp;rsquo;ll also disucss the various use cases of it. After reading this blog user should have comprehensive understanding of context package of golang.</description>
+      
+    </item>
+    
+  </channel>
 </rss>
