@@ -5,29 +5,6 @@
     <link>http://asheetbhaskar.net/tags/</link>
     <description>Recent content in Tags on Asheet Bhaskar</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 29 May 2021 09:37:32 +0530</lastBuildDate><atom:link href="http://asheetbhaskar.net/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>context</title>
-      <link>http://asheetbhaskar.net/tags/context/</link>
-      <pubDate>Sat, 29 May 2021 09:37:32 +0530</pubDate>
-      
-      <guid>http://asheetbhaskar.net/tags/context/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>http://asheetbhaskar.net/tags/golang/</link>
-      <pubDate>Sat, 29 May 2021 09:37:32 +0530</pubDate>
-      
-      <guid>http://asheetbhaskar.net/tags/golang/</guid>
-      
-        <description></description>
-      
-    </item>
-    
+    <language>en</language><atom:link href="http://asheetbhaskar.net/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

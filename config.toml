@@ -7,7 +7,30 @@ title = "Asheet Bhaskar"
 publishDir= "docs"
 
 # Change the default theme to be use when building the site with Hugo
-theme = "anatole"
+theme = "vncnt-hugo"
+
+
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+relativeURLs = true
+disableRSS = true
+enableRobotsTXT = true
+editor = "vi"
+language = "en"
+
+[permalinks]
+  fixed = ":title/"
+  posts = "posts/:slug/"
 
 [params]
-  contentratio = 0.8
+  author = "Asheet Bhaskar"
+  avatar = "img/asheet_bhaskar.png"
+  bio = "Polyglot developer with experience in building the scalable, highly available distributed systems"
+
+  [params.contact]
+    github = "https://github.com/asheet-bhaskar"
+    twitter = "https://twitter.com/asheet_bhaskar"
+    linkedin = "https://www.linkedin.com/in/asheet-bhaskar"
+    medium = "https://asheetbhaskar.medium.com"
+      

@@ -5,18 +5,6 @@
     <link>http://asheetbhaskar.net/</link>
     <description>Recent content on Asheet Bhaskar</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 29 May 2021 09:37:32 +0530</lastBuildDate><atom:link href="http://asheetbhaskar.net/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Context About Context Package in Golang</title>
-      <link>http://asheetbhaskar.net/posts/context-about-context-package-in-golang/</link>
-      <pubDate>Sat, 29 May 2021 09:37:32 +0530</pubDate>
-      
-      <guid>http://asheetbhaskar.net/posts/context-about-context-package-in-golang/</guid>
-      
-        <description>This post is about the context package of golang and how to get started with it. We&amp;rsquo;ll also disucss the various use cases of it. After reading this blog user should have comprehensive understanding of context package of golang.</description>
-      
-    </item>
-    
+    <language>en</language><atom:link href="http://asheetbhaskar.net/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
